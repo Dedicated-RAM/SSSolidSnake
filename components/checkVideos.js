@@ -28,7 +28,7 @@ changes include:
     - change in video duration (contentDetails.duration = "PT9M40S") (PT = period of time, M = minutes, S = seconds)
 */
 /**
- * Reduces a sequence of names to initials.
+ * checks for changes in videos given new and old array.
  * @param  {Array} new_videos   Array of objects describing each current video, see sample_data.json for example.
  * @param  {Array} old_videos   Array of objects describing each video over 30 minutes ago, see sample_data.json for example.
  * @return {Array}              Array of objects describing any changes to videos.
@@ -51,8 +51,7 @@ export async function checkChanges(new_videos, old_videos){
         if (convertDuration(new_video.contentDetails.duration) < convertDuration(old_video.contentDetails.duration)){
             changes.duration.push({
                 "type": "duration",
-                "old_video": old_video,
-                "new_video": new_video,
+                "video": new_video,
                 "old_duration": convertDuration(old_video.contentDetails.duration),
                 "new_duration": convertDuration(new_video.contentDetails.duration)
             });
