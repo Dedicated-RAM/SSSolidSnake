@@ -87,6 +87,12 @@ function durationVideoEmbed(change) {
 						value: timeString(change.new_duration),
 					},
 				],
+				image: {
+					url: change.video.snippet.thumbnails.maxres,
+				},
+				thumbnail: {
+					url: `https://youtube.com/watch?v=${change.video.id}`,
+				},
 			},
 		],
 		username: "Wolf Sniper",

@@ -19,7 +19,7 @@ async function main() {
 
     // wait until the clock minutes are 0 or 30
     // then get the videos and repeat
-    let videos = getVideos(CHANNEL_ID, TOKEN).catch((error) =>
+    let videos = await getVideos(CHANNEL_ID, TOKEN).catch((error) =>
         console.error(error)
     );
     if (!videos) {
@@ -91,8 +91,8 @@ function scheduleFunction() {
     setTimeout(main, delay);
 }
 
+//scheduleFunction();
 scheduleFunction();
-
 // request count: 190
 
 // plan, check every 30 minutes
