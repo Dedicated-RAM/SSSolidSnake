@@ -85,7 +85,6 @@ async function main() {
 function scheduleFunction() {
     var now = new Date();
     var delay = 30 - now.getMinutes() % 30; // minutes until next half hour mark
-    if (delay === 30) delay = 0; // if we're on the half hour, no delay
     delay = delay * 60 * 1000 - now.getSeconds() * 1000 - now.getMilliseconds(); // convert to milliseconds and subtract seconds and milliseconds already passed in the current minute
     console.log(`Waiting ${delay / 1000} seconds until next run...`)
     setTimeout(main, delay);
@@ -93,6 +92,6 @@ function scheduleFunction() {
 
 //scheduleFunction();
 scheduleFunction();
-// request count: 190
 
+// request count: 190
 // plan, check every 30 minutes
