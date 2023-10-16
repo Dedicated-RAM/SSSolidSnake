@@ -69,6 +69,7 @@ async function main() {
         // call function to send post request to discord webhook
         changedArray.concat(durationVideos);
     }
+    fs.writeFileSync("models/changes.json", JSON.stringify(changedArray, null, 2));
     console.log(removedVideos);
     console.log(durationVideos);
 }
