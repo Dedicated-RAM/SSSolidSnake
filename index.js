@@ -11,7 +11,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const TOKEN = process.env.TOKEN;
 const CHANNEL_ID = "UCpB959t8iPrxQWj7G6n0ctQ"; // channel id for the channel 'SSSniperwolf' aka. An awful freebooter
-const TMP_MAX = 100; // max number of files to keep in the .tmp folder
+const TMP_MAX = 10; // max number of files to keep in the .tmp folder
 
 
 async function main() {

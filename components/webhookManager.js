@@ -5,7 +5,7 @@ dotenv.config();
 const WEBHOOK_URL = process.env.WEBHOOK_URL;
 const AVATAR_URL =
 	"https://cdn.discordapp.com/avatars/150049682024955914/a_dbd4df1578dcdd28f0e8079429a3cfdf.gif?size=1024&width=0&height=384";
-
+const AVATAR_NAME = "SSSolidSnake";
 /**
  * Posts a webhook embed to announce a deleted or trimmed video
  * @param  {Object} change          Change object that has the change type and other attribs.
@@ -59,7 +59,7 @@ function deletedVideoEmbed(video) {
 				],
 			},
 		],
-		username: "Wolf Sniper",
+		username: AVATAR_NAME,
 		avatar_url: AVATAR_URL,
 		attachments: [],
 	};
@@ -95,7 +95,7 @@ function durationVideoEmbed(change) {
 				},
 			},
 		],
-		username: "Wolf Sniper",
+		username: AVATAR_NAME,
 		avatar_url: AVATAR_URL,
 		attachments: [],
 	};
