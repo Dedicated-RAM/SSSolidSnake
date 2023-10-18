@@ -22,7 +22,7 @@ async function getPlaylistVideos(playlistId, apiKey, pageToken = "") {
 
 			if (videoIds) {
 				const videoDetailsResponse = await axios.get(
-					`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails`
+					`https://www.googleapis.com/youtube/v3/videos?key=${apiKey}&id=${videoIds}&part=snippet,contentDetails,statistics`
 				);
 				allVideos = allVideos.concat(videoDetailsResponse.data.items);
 			}

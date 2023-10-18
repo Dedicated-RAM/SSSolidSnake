@@ -5,7 +5,7 @@ import {
 	writeVideosToFile,
 	deleteOldFiles,
 } from "./components/fileManager.js";
-import { sendWebhookMessage } from "./components/webhookManager.js";
+import { sendWebhookMessages } from "./components/webhookManager.js";
 import fs from "fs";
 import dotenv from "dotenv";
 dotenv.config();
@@ -13,16 +13,15 @@ const TOKEN = process.env.TOKEN;
 const CHANNEL_ID = "UCpB959t8iPrxQWj7G6n0ctQ"; // channel id for the channel 'SSSniperwolf' aka. An awful freebooter
 const TMP_MAX = 10; // max number of files to keep in the .tmp folder
 
-
 async function main() {
-    console.log("Running function...");
+	console.log("Running function...");
 
-    // wait until the clock minutes are 0 or 30
-    // then get the videos and repeat
-    let videos = await getVideos(CHANNEL_ID, TOKEN).catch((error) =>
-        console.error(error)
-    );
-    if (!videos) {
+	// wait until the clock minutes are 0 or 30
+	// then get the videos and repeat
+	let videos = await getVideos(CHANNEL_ID, TOKEN).catch((error) =>
+		console.error(error)
+	);
+	if (!videos) {
 		throw new Error("No videos found");
 	}
 
@@ -54,23 +53,13 @@ async function main() {
 
 	// add new change data to the changes.json file
 	let changedArray = JSON.parse(fs.readFileSync("models/changes.json"));
-	let removedVideos = changes.removed;
-	let durationVideos = changes.duration;
+	const removedVideos = changes.removed;
+	const durationVideos = changes.duration;
 
-	if (removedVideos.length > 0) {
-		// call function to send post request to discord webhook
-        for (let removedVideo of removedVideos) {
-            sendWebhookMessage(removedVideo);
-        }
-		changedArray = changedArray.concat(changedArray, removedVideos);
-	}
-	if (durationVideos.length > 0) {
-		// call function to send post request to discord webhook
-        for (let durationVideo of durationVideos) {
-            sendWebhookMessage(durationVideo);
-        }
-		changedArray = changedArray.concat(changedArray, durationVideos);
-	}
+	const newChanges = removedVideos.concat(durationVideos);
+	sendWebhookMessages(newChanges);
+	changedArray = changedArray.concat(newChanges);
+
 	fs.writeFile(
 		"models/changes.json",
 		JSON.stringify(changedArray, null, 2),
@@ -79,15 +68,15 @@ async function main() {
 			console.log("Data written to file");
 		}
 	);
-    scheduleFunction()
+	scheduleFunction();
 }
 
 function scheduleFunction() {
-    var now = new Date();
-    var delay = 30 - now.getMinutes() % 30; // minutes until next half hour mark
-    delay = delay * 60 * 1000 - now.getSeconds() * 1000 - now.getMilliseconds(); // convert to milliseconds and subtract seconds and milliseconds already passed in the current minute
-    console.log(`Waiting ${delay / 1000} seconds until next run...`)
-    setTimeout(main, delay);
+	var now = new Date();
+	var delay = 30 - (now.getMinutes() % 30); // minutes until next half hour mark
+	delay = delay * 60 * 1000 - now.getSeconds() * 1000 - now.getMilliseconds(); // convert to milliseconds and subtract seconds and milliseconds already passed in the current minute
+	console.log(`Waiting ${delay / 1000} seconds until next run...`);
+	setTimeout(main, delay);
 }
 
 //scheduleFunction();
