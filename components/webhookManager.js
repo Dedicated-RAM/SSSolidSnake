@@ -63,7 +63,7 @@ function deletedVideoEmbed(video) {
 		"embeds": [
 		  {
 			"author": {
-			  "name": "Video Removed Notification",
+			  "name": "Video Removed",
 			  "icon_url": "https://creazilla-store.fra1.digitaloceanspaces.com/emojis/52603/wastebasket-emoji-clipart-xl.png"
 			},
 			"title": videoTitle,
@@ -93,13 +93,17 @@ function deletedVideoEmbed(video) {
 				"name": "Video ID",
 				"value": videoId,
 				"inline": true
-			  }
+			  },
+			  {
+				name: "Between",
+				value: `<t:${new Date().getTime() - 60 * 30}> and <t:${new Date().getTime()}>`
+			}
 			],
 			"thumbnail": {
 			  "url": ""
 			},
 			"footer": {
-			  "text": "",
+			  "text": "Note: if the bot was down for more than 30 minutes, the `between time` could be off.",
 			  "icon_url": ""
 			}
 		  }
@@ -114,7 +118,7 @@ function durationVideoEmbed(change) {
 	if (change.video.hasOwnProperty("statistics")) {
 		viewCount = change.video.statistics.viewCount;
 	}
-	const videoId = change.video.id || "Not Found";
+	const videoId = change.video.id;
 	const thumbnailUrl = change.video.snippet.thumbnails.maxres.url;
 	const videoUrl = `https://youtube.com/watch?v=${videoId}`;
 
@@ -125,7 +129,7 @@ function durationVideoEmbed(change) {
 		embeds: [
 			{
 				author: {
-					name: "Video Trimmed Notification",
+					name: "Video Trimmed",
 					icon_url:
 						"https://em-content.zobj.net/source/skype/289/scissors_2702-fe0f.png",
 				},
@@ -146,7 +150,7 @@ function durationVideoEmbed(change) {
 					},
 					{
 						name: "View Count",
-						value: `${readableNumber(viewCount)} views`,	// TODO make viewcount more readable
+						value: `${readableNumber(viewCount)} views`,
 						inline: true,
 					},
 					{
@@ -163,12 +167,16 @@ function durationVideoEmbed(change) {
 						value: videoId,
 						inline: true,
 					},
+					{
+						name: "Between",
+						value: `<t:${new Date().getTime() - 60 * 30}> and <t:${new Date().getTime()}>`
+					}
 				],
 				thumbnail: {
 					url: thumbnailUrl,
 				},
 				footer: {
-					text: "",
+					text: "Note: if the bot was down for more than 30 minutes, this video may have been trimmed more than once and the `between time` could be off.",
 					icon_url: "",
 				},
 			},
