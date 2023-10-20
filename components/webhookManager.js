@@ -96,7 +96,7 @@ function deletedVideoEmbed(video) {
 			  },
 			  {
 				name: "Between",
-				value: `<t:${new Date().getTime() - 60 * 30}> and <t:${new Date().getTime()}>`
+				value: `<t:${(new Date().getTime() - 60 * 30) / 1000}> and <t:${(new Date().getTime()) / 1000}>`
 			}
 			],
 			"thumbnail": {
@@ -169,7 +169,7 @@ function durationVideoEmbed(change) {
 					},
 					{
 						name: "Between",
-						value: `<t:${new Date().getTime() - 60 * 30}> and <t:${new Date().getTime()}>`
+						value: `<t:${(new Date().getTime() - 60 * 30) / 1000}> and <t:${(new Date().getTime()) / 1000}>`
 					}
 				],
 				thumbnail: {
