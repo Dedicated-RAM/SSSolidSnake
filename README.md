@@ -7,4 +7,5 @@ Keeping a close eye on Sssniperwolf videos to see if any are deleted or trimmed 
 DedicatedRAM
 
 
-## (Discord)[https://discord.gg/rpG5dgRHvX]
+## Discord
+https://discord.gg/rpG5dgRHvX
