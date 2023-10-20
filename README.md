@@ -5,3 +5,6 @@ Keeping a close eye on Sssniperwolf videos to see if any are deleted or trimmed 
 ## Authors
 
 DedicatedRAM
+
+
+## (Discord)[https://discord.gg/rpG5dgRHvX]
