@@ -8,4 +8,4 @@ DedicatedRAM
 
 
 ## Discord
-https://discord.gg/rpG5dgRHvX
+https://discord.gg/VhsUBKyvwT
